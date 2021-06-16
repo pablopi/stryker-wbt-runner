@@ -4,6 +4,7 @@
   "description": "A plugin to use Web Test Runner in StrykerJS, the JavaScript mutation testing framework.",
   "main": "index.js",
   "scripts": {
+    "build": "tsc -b --clean && tsc -b",
     "test": "nyc npm run test:all",
     "test:all": "npm run test:unit && npm run test:integration",
     "test:unit": "wtr 'dist/test/unit/**/*.js' --coverage",
@@ -29,7 +30,10 @@
     "@stryker-mutator/api": "^5.0.1"
   },
   "devDependencies": {
+    "@types/node": "^15.12.2",
     "@web/test-runner": "^0.13.8",
-    "@web/test-runner-playwright": "^0.8.6"
+    "@web/test-runner-playwright": "^0.8.6",
+    "typed-inject": "^3.0.0",
+    "typescript": "^4.3.2"
   }
 }

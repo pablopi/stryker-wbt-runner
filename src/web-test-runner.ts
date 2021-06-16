@@ -1,25 +1,51 @@
-import { 
-  DryRunOptions, 
-  DryRunResult, 
-  MutantRunOptions, 
+import {
+  DryRunOptions,
+  DryRunResult,
+  MutantRunOptions,
   MutantRunResult,
   TestRunner,
-} from '@stryker-mutator/api/test-runner';
+  toMutantRunResult,
+  DryRunStatus
+} from "@stryker-mutator/api/dist/src/test-runner";
+
 
 export class WebTestRunner implements TestRunner {
-  public init (): Promise<void> {
-    // TODO: Implement or remove
+  public init(): Promise<void> {
+    return new Promise((res, rej) => {
+      console.log('init called');
+
+      res();
+    });
   }
 
-  public dryRun (options: DryRunOptions): Promise<DryRunResult> {
-    // TODO: Implement
+  private collectRunResult(): DryRunResult {
+    return {
+      status: DryRunStatus.Error,
+      errorMessage: 'WTR FAILURE'
+    };
   }
 
-  public mutantRun (options: MutantRunOptions): Promise<MutantRunResult> {
-    // TODO: Implement
+  private run(): DryRunResult {
+    console.log('run called');
+
+    return this.collectRunResult();
   }
 
-  public dispose (): Promise<void> {
-    // TODO: Implement or remove
+  public dryRun(options: DryRunOptions): Promise<DryRunResult> {
+    return Promise.resolve(this.run());
+  }
+
+  public mutantRun(options: MutantRunOptions): Promise<MutantRunResult> {
+    console.log('mutant called');
+    const dryRunResult = this.run();
+    return Promise.resolve(toMutantRunResult(dryRunResult));
+  }
+
+  public dispose(): Promise<void> {
+    return new Promise((res, rej) => {
+      console.log('dispose called');
+
+      res();
+    });
   }
 }
