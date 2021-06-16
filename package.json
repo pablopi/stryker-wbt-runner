@@ -1,0 +1,35 @@
+{
+  "name": "stryker-wtr-runner",
+  "version": "1.0.0",
+  "description": "A plugin to use Web Test Runner in StrykerJS, the JavaScript mutation testing framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc npm run test:all",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "test:unit": "wtr 'dist/test/unit/**/*.js' --coverage",
+    "test:integration": "wtr 'dist/test/integration/**/*.js' --coverage",
+    "stryker": "node ../core/bin/stryker run",
+    "test:wtr-no-browser": "wtr --config web-test-runner-mutation.config.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablopi/stryker-wtr-runner.git"
+  },
+  "keywords": [
+    "stryker",
+    "web-test-runner"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/pablopi/stryker-wtr-runner/issues"
+  },
+  "homepage": "https://github.com/pablopi/stryker-wtr-runner#readme",
+  "dependencies": {
+    "@stryker-mutator/api": "^5.0.1"
+  },
+  "devDependencies": {
+    "@web/test-runner": "^0.13.8",
+    "@web/test-runner-playwright": "^0.8.6"
+  }
+}
